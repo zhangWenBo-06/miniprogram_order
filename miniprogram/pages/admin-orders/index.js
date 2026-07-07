@@ -1,9 +1,17 @@
+const app = getApp()
 const util = require('../../utils/util')
 
 Page({
   data: { orders: [], loading: false, activeTab: 'pending' },
 
-  onShow() { this.loadOrders() },
+  onShow() {
+    if (!app.globalData.isAdmin) {
+      wx.showToast({ title: '无权限', icon: 'none' })
+      wx.navigateBack()
+      return
+    }
+    this.loadOrders()
+  },
 
   loadOrders() {
     this.setData({ loading: true })

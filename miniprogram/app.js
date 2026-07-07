@@ -23,21 +23,11 @@ App({
         resolve(app.globalData.userInfo)
         return
       }
-      wx.getUserProfile({
-        desc: '用于显示您的昵称和头像',
-        success: (res) => {
-          app.globalData.userInfo = res.userInfo
-          app.doLogin(res.userInfo).then(() => {
-            resolve(app.globalData.userInfo)
-          }).catch(reject)
-        },
-        fail: (err) => {
-          // Fallback: try silent login
-          app.doLogin({ nickName: '用户', avatarUrl: '' }).then(() => {
-            resolve(app.globalData.userInfo)
-          }).catch(reject)
-        }
-      })
+      // wx.getUserProfile is deprecated since base library 2.27.1.
+      // Use silent login — OPENID is the real identity.
+      app.doLogin({ nickName: '用户', avatarUrl: '' }).then(() => {
+        resolve(app.globalData.userInfo)
+      }).catch(reject)
     })
   },
 

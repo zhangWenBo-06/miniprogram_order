@@ -6,15 +6,6 @@ Component({
   lifetimes: {
     attached() {
       this.updateCount()
-    },
-    ready() {
-      // Poll for changes (simple approach since we use globalData)
-      this._timer = setInterval(() => {
-        this.updateCount()
-      }, 500)
-    },
-    detached() {
-      if (this._timer) clearInterval(this._timer)
     }
   },
   pageLifetimes: {

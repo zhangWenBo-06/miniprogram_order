@@ -3,8 +3,8 @@
   <view class="header">
     <view class="header-top">
       <view class="avatar-wrapper" bindtap="goToOrders">
-        <image wx:if="{{app.globalData.userInfo.avatarUrl}}"
-               src="{{app.globalData.userInfo.avatarUrl}}"
+        <image wx:if="{{userInfo && userInfo.avatarUrl}}"
+               src="{{userInfo.avatarUrl}}"
                class="avatar" />
         <view wx:else class="avatar-placeholder">👤</view>
       </view>

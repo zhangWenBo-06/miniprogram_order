@@ -11,9 +11,16 @@ Page({
   },
 
   onShow() {
-    this.setData({
-      isAdmin: app.globalData.isAdmin,
-      userInfo: app.globalData.userInfo
+    app.getUserInfo().then(userInfo => {
+      this.setData({
+        isAdmin: app.globalData.isAdmin,
+        userInfo: userInfo
+      })
+    }).catch(() => {
+      this.setData({
+        isAdmin: app.globalData.isAdmin,
+        userInfo: app.globalData.userInfo
+      })
     })
     this.loadOrders()
   },

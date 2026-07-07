@@ -13,19 +13,22 @@ Page({
     menus: [],
     loading: false,
     isAdmin: false,
+    userInfo: null,
     greeting: '今天想喝点什么？'
   },
 
   onLoad() {
     this.loadMenus()
-    app.checkAdmin().then(isAdmin => {
-      this.setData({ isAdmin })
+    app.getUserInfo().then(userInfo => {
+      this.setData({ userInfo, isAdmin: app.globalData.isAdmin })
+    }).catch(() => {
+      this.setData({ isAdmin: app.globalData.isAdmin })
     })
   },
 
   onShow() {
     util.updateCartBadge(util.getCart())
-    // Refresh admin status
+    // Refresh user/admin status
     app.checkAdmin().then(isAdmin => {
       this.setData({ isAdmin })
     })

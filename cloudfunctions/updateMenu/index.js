@@ -10,12 +10,20 @@ exports.main = async (event) => {
     return { success: false, error: '无权限' }
   }
 
-  const { menuId, ...updates } = event
+  const { menuId, name, category, image, price, specs, available } = event
   if (!menuId) {
     return { success: false, error: '缺少menuId' }
   }
 
-  delete updates.menuId
+  // Whitelist allowed fields to prevent arbitrary system-field writes
+  const updates = {}
+  if (name !== undefined) updates.name = name
+  if (category !== undefined) updates.category = category
+  if (image !== undefined) updates.image = image
+  if (price !== undefined) updates.price = price
+  if (specs !== undefined) updates.specs = specs
+  if (available !== undefined) updates.available = available
+
   if (Object.keys(updates).length === 0) {
     return { success: false, error: '没有要更新的字段' }
   }

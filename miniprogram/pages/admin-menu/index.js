@@ -1,3 +1,5 @@
+const app = getApp()
+
 Page({
   data: {
     menus: [], loading: false,
@@ -5,7 +7,14 @@ Page({
     formData: { name: '', category: 'drink', price: '', specsText: '', image: '' }
   },
 
-  onShow() { this.loadMenus() },
+  onShow() {
+    if (!app.globalData.isAdmin) {
+      wx.showToast({ title: '无权限', icon: 'none' })
+      wx.navigateBack()
+      return
+    }
+    this.loadMenus()
+  },
 
   loadMenus() {
     this.setData({ loading: true })

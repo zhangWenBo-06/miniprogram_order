@@ -1,7 +1,16 @@
+const app = getApp()
+
 Page({
   data: { suggestions: [], loading: false },
 
-  onShow() { this.loadSuggestions() },
+  onShow() {
+    if (!app.globalData.isAdmin) {
+      wx.showToast({ title: '无权限', icon: 'none' })
+      wx.navigateBack()
+      return
+    }
+    this.loadSuggestions()
+  },
 
   loadSuggestions() {
     this.setData({ loading: true })

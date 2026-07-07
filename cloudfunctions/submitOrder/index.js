@@ -10,6 +10,14 @@ exports.main = async (event) => {
     return { success: false, error: '订单不能为空' }
   }
 
+  // 验证每个菜品：menuId 必须存在且 available === true
+  for (const item of items) {
+    const menuRes = await db.collection('menus').where({ _id: item.menuId, available: true }).get()
+    if (menuRes.data.length === 0) {
+      return { success: false, error: `菜品「${item.name}」不存在或已下架` }
+    }
+  }
+
   // 创建订单
   const orderRes = await db.collection('orders').add({
     data: {

@@ -91,8 +91,6 @@ function updateCartBadge(cart) {
 }
 
 module.exports = {
-  formatStatus,
-  getStatusColor,
   formatTime,
   getCart,
   saveCart,
