@@ -2,7 +2,7 @@ const app = getApp()
 
 Page({
   data: {
-    menus: [], loading: false,
+    menus: [], loading: false, seeding: false,
     showEditor: false, editorMode: 'add', editingMenu: null,
     formData: { name: '', category: 'drink', price: '', specsText: '', image: '' }
   },
@@ -21,6 +21,32 @@ Page({
     wx.cloud.callFunction({ name: 'getMenus', data: { category: '' } })
       .then(res => { this.setData({ menus: res.result.menus || [], loading: false }) })
       .catch(() => { this.setData({ loading: false }) })
+  },
+
+  seedData() {
+    wx.showModal({
+      title: '初始化数据',
+      content: '将添加 18 个示例菜品（奶茶 8 个、零食 5 个、餐食 5 个），确定吗？',
+      success: (res) => {
+        if (res.confirm) {
+          this.setData({ seeding: true })
+          wx.cloud.callFunction({ name: 'seedData', data: {} })
+            .then(r => {
+              this.setData({ seeding: false })
+              if (r.result.success) {
+                wx.showToast({ title: `已添加 ${r.result.count} 个菜品`, icon: 'success' })
+                this.loadMenus()
+              } else {
+                wx.showToast({ title: r.result.error || '失败', icon: 'none' })
+              }
+            })
+            .catch(() => {
+              this.setData({ seeding: false })
+              wx.showToast({ title: '添加失败，请确保已上传 seedData 云函数', icon: 'none' })
+            })
+        }
+      }
+    })
   },
 
   showAdd() {

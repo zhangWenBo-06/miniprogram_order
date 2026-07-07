@@ -17,7 +17,9 @@
       </view>
     </view>
     <view class="empty-state" wx:if="{{menus.length === 0 && !loading}}">
-      <text class="icon">📋</text><text class="text">菜单为空，添加第一个菜品吧</text>
+      <text class="icon">📋</text><text class="text">菜单为空</text>
+      <view class="seed-btn" bindtap="seedData" wx:if="{{!seeding}}">🎲 一键添加示例菜单</view>
+      <view class="seed-btn loading" wx:else>正在添加...</view>
     </view>
   </view>
   <view class="fab" bindtap="showAdd"><text>+</text></view>
