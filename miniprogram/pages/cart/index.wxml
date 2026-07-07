@@ -8,7 +8,7 @@
       <view class="item-info">
         <text class="item-name">{{item.name}}</text>
         <text class="item-specs" wx:if="{{item.specs}}">
-          {{item.specs.冰量 || ''}}{{item.specs.甜度 ? '·' + item.specs.甜度 : ''}}{{item.specs.杯型 ? '·' + item.specs.杯型 : ''}}
+          {{item.specs['冰量'] || ''}}{{item.specs['甜度'] ? '·' + item.specs['甜度'] : ''}}{{item.specs['杯型'] ? '·' + item.specs['杯型'] : ''}}
         </text>
         <text class="item-remark" wx:if="{{item.remark}}">备注：{{item.remark}}</text>
       </view>

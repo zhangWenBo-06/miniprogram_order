@@ -46,7 +46,7 @@
         <view class="order-item" wx:for="{{item.items}}" wx:key="menuId" wx:for-item="oi">
           <text class="oi-name">{{oi.name}}</text><text class="oi-qty">x{{oi.quantity}}</text>
           <text class="oi-specs" wx:if="{{oi.specs}}">
-            {{oi.specs.冰量 || ''}}{{oi.specs.甜度 ? '·' + oi.specs.甜度 : ''}}{{oi.specs.杯型 ? '·' + oi.specs.杯型 : ''}}
+            {{oi.specs['冰量'] || ''}}{{oi.specs['甜度'] ? '·' + oi.specs['甜度'] : ''}}{{oi.specs['杯型'] ? '·' + oi.specs['杯型'] : ''}}
           </text>
           <text class="oi-remark" wx:if="{{oi.remark}}">备注：{{oi.remark}}</text>
         </view>

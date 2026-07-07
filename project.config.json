@@ -21,7 +21,9 @@
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
-    }
+    },
+    "swc": false,
+    "disableSWC": true
   },
   "appid": "wxac2b6b5386908858",
   "projectname": "order-for-you",
@@ -31,5 +33,7 @@
     "ignore": [],
     "include": []
   },
-  "editorSetting": {}
+  "editorSetting": {},
+  "libVersion": "3.16.2",
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate/"
 }
