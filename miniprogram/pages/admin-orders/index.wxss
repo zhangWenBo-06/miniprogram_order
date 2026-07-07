@@ -1,0 +1,22 @@
+.page-admin-orders { min-height: 100vh; }
+.order-tabs { display: flex; background: #fff; white-space: nowrap; overflow-x: auto; }
+.tab-item { flex-shrink: 0; padding: 20rpx 20rpx; font-size: 26rpx; color: #666; border-bottom: 3rpx solid transparent; position: relative; }
+.tab-item.active { color: #ff6b81; border-bottom-color: #ff6b81; }
+.tab-count { display: inline-block; min-width: 32rpx; height: 32rpx; line-height: 32rpx; background: #ff6b81; color: #fff; border-radius: 16rpx; font-size: 20rpx; text-align: center; margin-left: 6rpx; padding: 0 8rpx; vertical-align: middle; }
+.order-list { padding: 20rpx; }
+.order-card { background: #fff; border-radius: 16rpx; padding: 24rpx; margin-bottom: 20rpx; box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.06); }
+.order-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16rpx; }
+.order-time { font-size: 24rpx; color: #999; }
+.order-items { border-top: 1rpx solid #f5f5f5; padding-top: 16rpx; }
+.order-item { margin-bottom: 12rpx; padding-bottom: 12rpx; border-bottom: 1rpx dashed #f5f5f5; }
+.order-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.oi-row { display: flex; align-items: baseline; gap: 10rpx; }
+.oi-name { font-size: 30rpx; font-weight: 500; }
+.oi-qty { font-size: 26rpx; color: #ff6b81; }
+.oi-specs { display: block; font-size: 24rpx; color: #999; margin-top: 4rpx; }
+.oi-remark { display: block; font-size: 24rpx; color: #ff6b81; margin-top: 4rpx; }
+.order-note { margin-top: 12rpx; font-size: 24rpx; color: #666; background: #fafafa; padding: 12rpx 16rpx; border-radius: 8rpx; }
+.order-actions { margin-top: 16rpx; display: flex; justify-content: flex-end; gap: 16rpx; }
+.action-btn { padding: 12rpx 24rpx; border-radius: 30rpx; background: linear-gradient(135deg, #ff6b81, #ff8fa3); color: #fff; font-size: 26rpx; }
+.action-btn.done { background: linear-gradient(135deg, #4caf50, #66bb6a); }
+.action-done { padding: 12rpx 24rpx; font-size: 26rpx; color: #4caf50; }

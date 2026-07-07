@@ -1,0 +1,31 @@
+.page-admin-menu { padding-bottom: 120rpx; min-height: 100vh; }
+.menu-item { display: flex; align-items: center; background: #fff; padding: 20rpx; margin-bottom: 2rpx; gap: 16rpx; }
+.item-image { width: 100rpx; height: 100rpx; border-radius: 12rpx; overflow: hidden; flex-shrink: 0; position: relative; background: #f0f0f0; }
+.item-image image { width: 100%; height: 100%; }
+.image-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #ff6b81, #ff8fa3); color: #fff; font-size: 40rpx; font-weight: bold; }
+.available-badge { position: absolute; bottom: 0; left: 0; right: 0; text-align: center; font-size: 18rpx; padding: 2rpx; color: #fff; }
+.available-badge.on { background: #4caf50; } .available-badge.off { background: #999; }
+.item-info { flex: 1; min-width: 0; }
+.item-name { font-size: 28rpx; font-weight: 500; display: block; }
+.item-cat { font-size: 22rpx; color: #999; }
+.item-actions { display: flex; gap: 12rpx; flex-shrink: 0; }
+.action-btn { padding: 8rpx 16rpx; border-radius: 8rpx; background: #f5f5f5; font-size: 22rpx; color: #666; }
+.action-btn.danger { color: #ff4757; }
+.fab { position: fixed; bottom: 60rpx; right: 40rpx; width: 100rpx; height: 100rpx; background: linear-gradient(135deg, #ff6b81, #ff8fa3); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4rpx 20rpx rgba(255,107,129,0.4); z-index: 100; }
+.fab text { color: #fff; font-size: 48rpx; font-weight: 300; }
+.editor-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000; display: flex; align-items: flex-end; }
+.editor-panel { width: 100%; max-height: 80vh; background: #fff; border-radius: 24rpx 24rpx 0 0; display: flex; flex-direction: column; }
+.editor-header { display: flex; justify-content: space-between; align-items: center; padding: 30rpx; border-bottom: 1rpx solid #eee; font-size: 32rpx; font-weight: 600; }
+.close-btn { font-size: 32rpx; color: #999; padding: 10rpx; }
+.editor-body { padding: 30rpx; flex: 1; max-height: 55vh; }
+.form-group { margin-bottom: 24rpx; }
+.form-label { font-size: 26rpx; color: #666; display: block; margin-bottom: 10rpx; }
+.upload-btn { padding: 24rpx; border: 2rpx dashed #ddd; border-radius: 12rpx; text-align: center; font-size: 26rpx; color: #999; }
+.form-input { width: 100%; height: 72rpx; border: 1rpx solid #eee; border-radius: 10rpx; padding: 0 16rpx; font-size: 26rpx; box-sizing: border-box; }
+.form-textarea { width: 100%; height: 100rpx; border: 1rpx solid #eee; border-radius: 10rpx; padding: 12rpx 16rpx; font-size: 24rpx; box-sizing: border-box; }
+.form-hint { font-size: 20rpx; color: #ccc; margin-top: 6rpx; display: block; }
+.cat-options { display: flex; gap: 16rpx; }
+.cat-opt { flex: 1; text-align: center; padding: 14rpx; border-radius: 10rpx; background: #f5f5f5; font-size: 24rpx; }
+.cat-opt.active { background: linear-gradient(135deg, #ff6b81, #ff8fa3); color: #fff; }
+.editor-footer { padding: 20rpx 30rpx; padding-bottom: calc(20rpx + env(safe-area-inset-bottom)); border-top: 1rpx solid #eee; }
+.btn-save { width: 100%; background: linear-gradient(135deg, #ff6b81, #ff8fa3); color: #fff; text-align: center; padding: 22rpx; border-radius: 40rpx; font-size: 30rpx; font-weight: 500; }

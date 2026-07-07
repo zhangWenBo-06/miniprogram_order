@@ -1,0 +1,23 @@
+<view class="page-admin-suggest">
+  <view class="suggest-list" wx:if="{{suggestions.length > 0}}">
+    <view class="suggest-card" wx:for="{{suggestions}}" wx:key="_id">
+      <view class="suggest-header">
+        <text class="suggest-name">{{item.name}}</text>
+        <text class="suggest-cat">{{item.category === 'drink' ? '🥤 奶茶' : item.category === 'snack' ? '🍿 零食' : '🍱 餐食'}}</text>
+      </view>
+      <text class="suggest-reason" wx:if="{{item.reason}}">💬 {{item.reason}}</text>
+      <view class="suggest-status">
+        <text wx:if="{{item.status === 'pending'}}" class="status pending">待审核</text>
+        <text wx:if="{{item.status === 'approved'}}" class="status approved">✅ 已通过</text>
+        <text wx:if="{{item.status === 'rejected'}}" class="status rejected">❌ 已拒绝</text>
+      </view>
+      <view class="suggest-actions" wx:if="{{item.status === 'pending'}}">
+        <view class="btn-approve" data-id="{{item._id}}" data-action="approved" bindtap="handleSuggestion">通过</view>
+        <view class="btn-reject" data-id="{{item._id}}" data-action="rejected" bindtap="handleSuggestion">拒绝</view>
+      </view>
+    </view>
+  </view>
+  <view class="empty-state" wx:elif="{{!loading}}">
+    <text class="icon">💡</text><text class="text">暂无建议</text>
+  </view>
+</view>

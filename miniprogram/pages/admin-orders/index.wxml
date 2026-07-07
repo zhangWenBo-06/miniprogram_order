@@ -1,0 +1,45 @@
+<view class="page-admin-orders">
+  <view class="order-tabs">
+    <view wx:for="{{[{key:'pending',label:'待处理'},{key:'accepted',label:'已接单'},{key:'preparing',label:'制作中'},{key:'done',label:'已完成'}]}}"
+          wx:key="key" class="tab-item {{activeTab === item.key ? 'active' : ''}}"
+          data-tab="{{item.key}}" bindtap="switchTab">
+      {{item.label}}
+      <text class="tab-count" wx:if="{{orders.filter(o => o.status === item.key).length > 0}}">
+        {{orders.filter(o => o.status === item.key).length}}
+      </text>
+    </view>
+  </view>
+
+  <view class="order-list" wx:if="{{orders.length > 0}}">
+    <view class="order-card" wx:for="{{orders}}" wx:key="_id" wx:if="{{item.status === activeTab}}">
+      <view class="order-header">
+        <text class="order-time">{{item.formattedTime}}</text>
+        <status-badge status="{{item.status}}" />
+      </view>
+      <view class="order-items">
+        <view class="order-item" wx:for="{{item.items}}" wx:key="menuId" wx:for-item="oi">
+          <view class="oi-row">
+            <text class="oi-name">{{oi.name}}</text><text class="oi-qty">x{{oi.quantity}}</text>
+          </view>
+          <text class="oi-specs" wx:if="{{oi.specs}}">
+            {{oi.specs.冰量 || ''}}{{oi.specs.甜度 ? '·' + oi.specs.甜度 : ''}}{{oi.specs.杯型 ? '·' + oi.specs.杯型 : ''}}
+          </text>
+          <text class="oi-remark" wx:if="{{oi.remark}}">备注：{{oi.remark}}</text>
+        </view>
+      </view>
+      <view class="order-note" wx:if="{{item.note}}"><text>📝 {{item.note}}</text></view>
+      <view class="order-actions">
+        <view class="action-btn" wx:if="{{item.status === 'pending'}}"
+              data-order-id="{{item._id}}" data-status="pending" bindtap="changeStatus">✅ 接单</view>
+        <view class="action-btn" wx:if="{{item.status === 'accepted'}}"
+              data-order-id="{{item._id}}" data-status="accepted" bindtap="changeStatus">🔧 开始制作</view>
+        <view class="action-btn done" wx:if="{{item.status === 'preparing'}}"
+              data-order-id="{{item._id}}" data-status="preparing" bindtap="changeStatus">🎉 完成</view>
+        <view class="action-done" wx:if="{{item.status === 'done'}}"><text>✅ 已完成</text></view>
+      </view>
+    </view>
+  </view>
+  <view class="empty-state" wx:elif="{{!loading}}">
+    <text class="icon">📦</text><text class="text">暂无订单</text>
+  </view>
+</view>

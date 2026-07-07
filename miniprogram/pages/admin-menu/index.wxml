@@ -1,0 +1,68 @@
+<view class="page-admin-menu">
+  <view class="menu-list">
+    <view class="menu-item" wx:for="{{menus}}" wx:key="_id">
+      <view class="item-image">
+        <image wx:if="{{item.image}}" src="{{item.image}}" mode="aspectFill" />
+        <view wx:else class="image-placeholder">{{item.name[0]}}</view>
+        <view class="available-badge {{item.available ? 'on' : 'off'}}">{{item.available ? '上架' : '下架'}}</view>
+      </view>
+      <view class="item-info">
+        <text class="item-name">{{item.name}}</text>
+        <text class="item-cat">{{item.category === 'drink' ? '奶茶' : item.category === 'snack' ? '零食' : '餐食'}}</text>
+      </view>
+      <view class="item-actions">
+        <view class="action-btn" data-menu="{{item}}" bindtap="showEdit">编辑</view>
+        <view class="action-btn" data-menu="{{item}}" bindtap="toggleAvailable">{{item.available ? '下架' : '上架'}}</view>
+        <view class="action-btn danger" data-menu="{{item}}" bindtap="deleteMenu">删除</view>
+      </view>
+    </view>
+    <view class="empty-state" wx:if="{{menus.length === 0 && !loading}}">
+      <text class="icon">📋</text><text class="text">菜单为空，添加第一个菜品吧</text>
+    </view>
+  </view>
+  <view class="fab" bindtap="showAdd"><text>+</text></view>
+
+  <view class="editor-overlay" wx:if="{{showEditor}}" bindtap="hideEditor">
+    <view class="editor-panel" catchtap="">
+      <view class="editor-header">
+        <text>{{editorMode === 'add' ? '添加菜品' : '编辑菜品'}}</text>
+        <view class="close-btn" bindtap="hideEditor">✕</view>
+      </view>
+      <scroll-view scroll-y class="editor-body">
+        <view class="form-group">
+          <text class="form-label">图片</text>
+          <view class="upload-btn" bindtap="onUploadImage">
+            <text>{{formData.image ? '已上传 ✓' : '点击上传图片'}}</text>
+          </view>
+        </view>
+        <view class="form-group">
+          <text class="form-label">名称</text>
+          <input class="form-input" placeholder="菜品名称" maxlength="20"
+                 value="{{formData.name}}" data-field="name" bindinput="onFormFieldChange" />
+        </view>
+        <view class="form-group">
+          <text class="form-label">分类</text>
+          <view class="cat-options">
+            <view class="cat-opt {{formData.category === 'drink' ? 'active' : ''}}" data-value="drink" bindtap="onCategorySelect">🥤 奶茶</view>
+            <view class="cat-opt {{formData.category === 'snack' ? 'active' : ''}}" data-value="snack" bindtap="onCategorySelect">🍿 零食</view>
+            <view class="cat-opt {{formData.category === 'meal' ? 'active' : ''}}" data-value="meal" bindtap="onCategorySelect">🍱 餐食</view>
+          </view>
+        </view>
+        <view class="form-group">
+          <text class="form-label">价格（可选）</text>
+          <input class="form-input" type="digit" placeholder="0 表示无价格"
+                 value="{{formData.price}}" data-field="price" bindinput="onFormFieldChange" />
+        </view>
+        <view class="form-group">
+          <text class="form-label">规格配置</text>
+          <textarea class="form-textarea" placeholder="格式：冰量:正常冰,少冰,去冰|甜度:全糖,半糖,无糖"
+                    value="{{formData.specsText}}" data-field="specsText" bindinput="onFormFieldChange" />
+          <text class="form-hint">格式：规格名:选项1,选项2（多规格用 | 分隔）</text>
+        </view>
+      </scroll-view>
+      <view class="editor-footer">
+        <view class="btn-save" bindtap="saveMenu">保存</view>
+      </view>
+    </view>
+  </view>
+</view>
