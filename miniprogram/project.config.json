@@ -1,0 +1,12 @@
+{
+  "miniprogramRoot": "miniprogram/",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "setting": {
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true
+  },
+  "appid": "YOUR_APPID_HERE",
+  "projectname": "order-for-you"
+}
