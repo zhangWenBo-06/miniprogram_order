@@ -1,0 +1,12 @@
+<view class="menu-card" bindtap="onTap">
+  <view class="card-image">
+    <image wx:if="{{menu.image}}" src="{{menu.image}}" mode="aspectFill" />
+    <view wx:else class="image-placeholder"><text>{{menu.name[0]}}</text></view>
+    <view class="category-tag">{{menu.category === 'drink' ? '🥤' : menu.category === 'snack' ? '🍿' : '🍱'}}</view>
+  </view>
+  <view class="card-body">
+    <text class="card-name">{{menu.name}}</text>
+    <text class="card-price" wx:if="{{menu.price}}">¥{{menu.price}}</text>
+    <text class="card-price free" wx:else>免费投喂</text>
+  </view>
+</view>
