@@ -1,0 +1,44 @@
+<view class="page-cart">
+  <view wx:if="{{cartItems.length > 0}}">
+    <view class="cart-item" wx:for="{{cartItems}}" wx:key="menuId">
+      <view class="item-image">
+        <image wx:if="{{item.image}}" src="{{item.image}}" mode="aspectFill" />
+        <view wx:else class="item-placeholder">{{item.name[0]}}</view>
+      </view>
+      <view class="item-info">
+        <text class="item-name">{{item.name}}</text>
+        <text class="item-specs" wx:if="{{item.specs}}">
+          {{item.specs.冰量 || ''}}{{item.specs.甜度 ? '·' + item.specs.甜度 : ''}}{{item.specs.杯型 ? '·' + item.specs.杯型 : ''}}
+        </text>
+        <text class="item-remark" wx:if="{{item.remark}}">备注：{{item.remark}}</text>
+      </view>
+      <view class="item-actions">
+        <view class="qty-control">
+          <view class="qty-btn" data-index="{{index}}" data-action="minus" bindtap="onQuantityChange">-</view>
+          <text class="qty-value">{{item.quantity}}</text>
+          <view class="qty-btn" data-index="{{index}}" data-action="plus" bindtap="onQuantityChange">+</view>
+        </view>
+        <view class="delete-btn" data-index="{{index}}" bindtap="onRemoveItem">删除</view>
+      </view>
+    </view>
+    <view class="order-note">
+      <text class="note-label">订单备注</text>
+      <textarea class="note-input" placeholder="比如：送到房间、趁热吃..." maxlength="100"
+                value="{{note}}" bindinput="onNoteInput" />
+    </view>
+  </view>
+  <view class="empty-state" wx:else>
+    <text class="icon">🛒</text>
+    <text class="text">购物车空空的，去逛逛吧~</text>
+  </view>
+  <view class="bottom-bar" wx:if="{{cartItems.length > 0}}">
+    <view class="total-info">
+      <text class="total-label">共</text>
+      <text class="total-count">{{totalCount}}</text>
+      <text class="total-label">件</text>
+    </view>
+    <view class="btn-submit {{submitting ? 'disabled' : ''}}" bindtap="submitOrder">
+      <text>{{submitting ? '提交中...' : '提交订单'}}</text>
+    </view>
+  </view>
+</view>

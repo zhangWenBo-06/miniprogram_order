@@ -1,0 +1,61 @@
+<view class="page-orders">
+  <view class="user-header">
+    <view class="user-avatar">
+      <image wx:if="{{userInfo && userInfo.avatarUrl}}" src="{{userInfo.avatarUrl}}" />
+      <view wx:else class="avatar-placeholder">👤</view>
+    </view>
+    <text class="user-name">{{userInfo ? userInfo.nickName : '点击登录'}}</text>
+  </view>
+
+  <view class="subscribe-row">
+    <view class="subscribe-btn" bindtap="subscribeStatus">🔔 订单状态通知</view>
+  </view>
+
+  <view class="admin-links" wx:if="{{isAdmin}}">
+    <view class="admin-link-item" bindtap="goToAdminMenu">
+      <text class="link-icon">📋</text><text class="link-text">菜单管理</text><text class="link-arrow">›</text>
+    </view>
+    <view class="admin-link-item" bindtap="goToAdminOrders">
+      <text class="link-icon">📦</text><text class="link-text">订单管理</text><text class="link-arrow">›</text>
+    </view>
+    <view class="admin-link-item" bindtap="goToAdminSuggest">
+      <text class="link-icon">💡</text><text class="link-text">建议审核</text><text class="link-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="user-link" wx:elif="{{!isAdmin}}">
+    <view class="admin-link-item" bindtap="goToSuggest">
+      <text class="link-icon">💡</text><text class="link-text">我想喝...</text><text class="link-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="order-tabs">
+    <view wx:for="{{[{key:'all',label:'全部'},{key:'pending',label:'待处理'},{key:'done',label:'已完成'}]}}"
+          wx:key="key" class="tab-item {{activeTab === item.key ? 'active' : ''}}"
+          data-tab="{{item.key}}" bindtap="switchTab">{{item.label}}</view>
+  </view>
+
+  <view class="order-list" wx:if="{{orders.length > 0}}">
+    <view class="order-card" wx:for="{{orders}}" wx:key="_id"
+          wx:if="{{activeTab === 'all' || (activeTab === 'pending' && item.status !== 'done') || (activeTab === 'done' && item.status === 'done')}}">
+      <view class="order-header">
+        <text class="order-time">{{item.formattedTime}}</text>
+        <status-badge status="{{item.status}}" />
+      </view>
+      <view class="order-items">
+        <view class="order-item" wx:for="{{item.items}}" wx:key="menuId" wx:for-item="oi">
+          <text class="oi-name">{{oi.name}}</text><text class="oi-qty">x{{oi.quantity}}</text>
+          <text class="oi-specs" wx:if="{{oi.specs}}">
+            {{oi.specs.冰量 || ''}}{{oi.specs.甜度 ? '·' + oi.specs.甜度 : ''}}{{oi.specs.杯型 ? '·' + oi.specs.杯型 : ''}}
+          </text>
+          <text class="oi-remark" wx:if="{{oi.remark}}">备注：{{oi.remark}}</text>
+        </view>
+      </view>
+      <view class="order-note" wx:if="{{item.note}}"><text>📝 {{item.note}}</text></view>
+    </view>
+  </view>
+  <view class="empty-state" wx:elif="{{!loading}}">
+    <text class="icon">📦</text><text class="text">暂无订单</text>
+  </view>
+  <view class="loading" wx:if="{{loading}}"><text>加载中...</text></view>
+</view>

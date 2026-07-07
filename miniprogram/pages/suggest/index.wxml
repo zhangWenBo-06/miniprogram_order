@@ -1,0 +1,29 @@
+<view class="page-suggest">
+  <view class="form-section">
+    <view class="form-group">
+      <text class="form-label">分类</text>
+      <view class="category-options">
+        <view wx:for="{{categories}}" wx:key="key"
+              class="cat-option {{selectedCategory === item.key ? 'active' : ''}}"
+              data-category="{{item.key}}" bindtap="onCategoryChange">{{item.label}}</view>
+      </view>
+    </view>
+    <view class="form-group">
+      <text class="form-label">想喝/想吃什么？</text>
+      <input class="form-input" placeholder="比如：杨枝甘露" maxlength="30"
+             value="{{name}}" bindinput="onNameInput" />
+    </view>
+    <view class="form-group">
+      <text class="form-label">推荐理由（选填）</text>
+      <textarea class="form-textarea" placeholder="比如：学校门口的杨枝甘露特别好喝！"
+                maxlength="100" value="{{reason}}" bindinput="onReasonInput" />
+    </view>
+    <view class="btn-submit {{submitting ? 'disabled' : ''}}" bindtap="submit">
+      <text>{{submitting ? '提交中...' : '提交建议 💌'}}</text>
+    </view>
+  </view>
+  <view class="tips">
+    <text class="tips-icon">💡</text>
+    <text class="tips-text">你想喝什么都可以在这里告诉我，我会考虑加到菜单里~</text>
+  </view>
+</view>

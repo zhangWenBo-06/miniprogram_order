@@ -1,0 +1,23 @@
+.page-cart { padding-bottom: 140rpx; }
+.cart-item { display: flex; background: #fff; padding: 24rpx; margin-bottom: 2rpx; gap: 16rpx; }
+.item-image { width: 120rpx; height: 120rpx; border-radius: 12rpx; overflow: hidden; flex-shrink: 0; background: #f0f0f0; }
+.item-image image { width: 100%; height: 100%; }
+.item-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #ff6b81, #ff8fa3); color: #fff; font-size: 48rpx; font-weight: bold; }
+.item-info { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 6rpx; min-width: 0; }
+.item-name { font-size: 30rpx; font-weight: 500; }
+.item-specs { font-size: 24rpx; color: #999; }
+.item-remark { font-size: 24rpx; color: #ff6b81; }
+.item-actions { display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between; flex-shrink: 0; }
+.qty-control { display: flex; align-items: center; gap: 12rpx; }
+.qty-btn { width: 44rpx; height: 44rpx; border-radius: 50%; border: 1rpx solid #ddd; display: flex; align-items: center; justify-content: center; font-size: 28rpx; color: #666; }
+.qty-value { font-size: 28rpx; min-width: 40rpx; text-align: center; }
+.delete-btn { font-size: 22rpx; color: #999; padding: 4rpx 12rpx; margin-top: 8rpx; }
+.order-note { background: #fff; padding: 24rpx; margin-top: 20rpx; }
+.note-label { font-size: 28rpx; color: #666; display: block; margin-bottom: 12rpx; }
+.note-input { width: 100%; height: 100rpx; border: 1rpx solid #eee; border-radius: 12rpx; padding: 16rpx; font-size: 26rpx; box-sizing: border-box; }
+.bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; padding: 20rpx 30rpx; padding-bottom: calc(20rpx + env(safe-area-inset-bottom)); background: #fff; box-shadow: 0 -2rpx 12rpx rgba(0,0,0,0.05); }
+.total-info { display: flex; align-items: baseline; gap: 6rpx; }
+.total-label { font-size: 26rpx; color: #666; }
+.total-count { font-size: 36rpx; color: #ff6b81; font-weight: 600; }
+.btn-submit { background: linear-gradient(135deg, #ff6b81, #ff8fa3); color: #fff; padding: 20rpx 48rpx; border-radius: 40rpx; font-size: 30rpx; font-weight: 500; }
+.btn-submit.disabled { opacity: 0.6; }
