@@ -1,0 +1,37 @@
+.page-menu {
+  padding-bottom: 120rpx;
+}
+
+.category-tabs {
+  white-space: nowrap;
+  padding: 20rpx;
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+
+.tab-item {
+  display: inline-block;
+  padding: 12rpx 28rpx;
+  margin-right: 16rpx;
+  border-radius: 30rpx;
+  background: #f5f5f5;
+  font-size: 26rpx;
+  color: #666;
+  transition: all 0.2s;
+}
+
+.tab-item.active {
+  background: #ff6b81;
+  color: #fff;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20rpx;
+  padding: 0 20rpx;
+}
+
+.menu-item {
+  width: 100%;
+}

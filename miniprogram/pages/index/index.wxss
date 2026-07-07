@@ -1,0 +1,104 @@
+.page-index {
+  padding-bottom: 120rpx;
+}
+
+.header {
+  background: linear-gradient(135deg, #ff6b81, #ff8fa3);
+  padding: 30rpx;
+  color: #fff;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.avatar-wrapper {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3rpx solid rgba(255,255,255,0.5);
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.3);
+  font-size: 40rpx;
+}
+
+.greeting {
+  font-size: 34rpx;
+  font-weight: 500;
+}
+
+.admin-entry,
+.user-entry {
+  display: flex;
+  gap: 16rpx;
+  margin-top: 20rpx;
+  flex-wrap: wrap;
+}
+
+.admin-btn,
+.user-btn {
+  background: rgba(255,255,255,0.25);
+  padding: 10rpx 24rpx;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+}
+
+.admin-btn:active,
+.user-btn:active {
+  background: rgba(255,255,255,0.4);
+}
+
+.category-tabs {
+  white-space: nowrap;
+  padding: 20rpx;
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+
+.tab-item {
+  display: inline-block;
+  padding: 12rpx 28rpx;
+  margin-right: 16rpx;
+  border-radius: 30rpx;
+  background: #f5f5f5;
+  font-size: 26rpx;
+  color: #666;
+  transition: all 0.2s;
+}
+
+.tab-item.active {
+  background: #ff6b81;
+  color: #fff;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20rpx;
+  padding: 0 20rpx;
+}
+
+.menu-item {
+  width: 100%;
+}
+
+.loading {
+  text-align: center;
+  padding: 60rpx;
+  color: #999;
+}

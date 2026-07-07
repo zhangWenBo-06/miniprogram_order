@@ -1,0 +1,25 @@
+<view class="page-menu">
+  <scroll-view scroll-x class="category-tabs">
+    <view
+      wx:for="{{categories}}"
+      wx:key="key"
+      class="tab-item {{activeCategory === item.key ? 'active' : ''}}"
+      data-category="{{item.key}}"
+      bindtap="switchCategory">
+      {{item.label}}
+    </view>
+  </scroll-view>
+
+  <view class="menu-grid" wx:if="{{menus.length > 0}}">
+    <view class="menu-item" wx:for="{{menus}}" wx:key="_id">
+      <menu-card menu="{{item}}" bind:tap="onMenuTap" />
+    </view>
+  </view>
+
+  <view class="empty-state" wx:elif="{{!loading}}">
+    <text class="icon">📭</text>
+    <text class="text">暂无菜品</text>
+  </view>
+
+  <cart-icon />
+</view>

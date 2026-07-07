@@ -1,0 +1,27 @@
+.page-detail { padding-bottom: 180rpx; }
+.hero-image { width: 100%; height: 400rpx; background: #f0f0f0; }
+.hero-image image { width: 100%; height: 100%; }
+.hero-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #ff6b81, #ff8fa3); }
+.hero-placeholder text { font-size: 120rpx; color: #fff; font-weight: bold; }
+.info-section { background: #fff; padding: 30rpx; margin-bottom: 20rpx; }
+.info-header { display: flex; align-items: center; gap: 16rpx; }
+.menu-name { font-size: 36rpx; font-weight: 600; }
+.menu-category { font-size: 32rpx; }
+.menu-price { font-size: 30rpx; color: #ff6b81; margin-top: 10rpx; display: block; }
+.menu-price.free { color: #999; font-size: 26rpx; }
+.specs-section { background: #fff; padding: 30rpx; margin-bottom: 20rpx; }
+.spec-group { margin-bottom: 24rpx; }
+.spec-group:last-child { margin-bottom: 0; }
+.spec-label { font-size: 28rpx; color: #666; margin-bottom: 12rpx; display: block; }
+.spec-options { display: flex; flex-wrap: wrap; gap: 16rpx; }
+.spec-option { padding: 12rpx 24rpx; border-radius: 30rpx; background: #f5f5f5; font-size: 26rpx; color: #666; }
+.spec-option.active { background: #ff6b81; color: #fff; }
+.quantity-section { background: #fff; padding: 30rpx; margin-bottom: 20rpx; display: flex; justify-content: space-between; align-items: center; }
+.section-label { font-size: 28rpx; color: #666; }
+.quantity-control { display: flex; align-items: center; gap: 24rpx; }
+.qty-btn { width: 56rpx; height: 56rpx; border-radius: 50%; background: #f5f5f5; display: flex; align-items: center; justify-content: center; font-size: 32rpx; color: #666; }
+.qty-value { font-size: 32rpx; font-weight: 600; min-width: 60rpx; text-align: center; }
+.remark-section { background: #fff; padding: 30rpx; margin-bottom: 20rpx; }
+.remark-input { width: 100%; height: 120rpx; border: 1rpx solid #eee; border-radius: 12rpx; padding: 16rpx; font-size: 26rpx; margin-top: 12rpx; box-sizing: border-box; }
+.bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; padding: 20rpx 30rpx; padding-bottom: calc(20rpx + env(safe-area-inset-bottom)); background: #fff; box-shadow: 0 -2rpx 12rpx rgba(0,0,0,0.05); }
+.btn-cart { width: 100%; background: linear-gradient(135deg, #ff6b81, #ff8fa3); color: #fff; text-align: center; padding: 24rpx; border-radius: 40rpx; font-size: 32rpx; font-weight: 500; }

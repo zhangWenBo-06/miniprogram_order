@@ -1,0 +1,60 @@
+<view class="page-index">
+  <!-- 顶部区域 -->
+  <view class="header">
+    <view class="header-top">
+      <view class="avatar-wrapper" bindtap="goToOrders">
+        <image wx:if="{{app.globalData.userInfo.avatarUrl}}"
+               src="{{app.globalData.userInfo.avatarUrl}}"
+               class="avatar" />
+        <view wx:else class="avatar-placeholder">👤</view>
+      </view>
+      <view class="greeting">{{greeting}}</view>
+    </view>
+
+    <!-- 管理入口 (仅管理员) -->
+    <view class="admin-entry" wx:if="{{isAdmin}}">
+      <view class="admin-btn" bindtap="subscribeAdmin">🔔 开启通知</view>
+      <view class="admin-btn" bindtap="goToAdminMenu">📋 菜单</view>
+      <view class="admin-btn" bindtap="goToAdminOrders">📦 订单</view>
+      <view class="admin-btn" bindtap="goToAdminSuggest">💡 建议</view>
+    </view>
+
+    <!-- 用户入口 -->
+    <view class="user-entry" wx:elif="{{!isAdmin}}">
+      <view class="user-btn" bindtap="goToSuggest">💡 我想喝...</view>
+    </view>
+  </view>
+
+  <!-- 分类 Tab -->
+  <scroll-view scroll-x class="category-tabs">
+    <view
+      wx:for="{{categories}}"
+      wx:key="key"
+      class="tab-item {{activeCategory === item.key ? 'active' : ''}}"
+      data-category="{{item.key}}"
+      bindtap="switchCategory">
+      {{item.label}}
+    </view>
+  </scroll-view>
+
+  <!-- 菜品列表 -->
+  <view class="menu-grid" wx:if="{{menus.length > 0}}">
+    <view class="menu-item" wx:for="{{menus}}" wx:key="_id">
+      <menu-card menu="{{item}}" bind:tap="onMenuTap" />
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:elif="{{!loading}}">
+    <text class="icon">📭</text>
+    <text class="text">菜单空空如也，等待投喂~</text>
+  </view>
+
+  <!-- 加载中 -->
+  <view class="loading" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+
+  <!-- 购物车浮标 -->
+  <cart-icon />
+</view>

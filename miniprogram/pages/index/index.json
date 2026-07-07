@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "专属点单",
+  "usingComponents": {
+    "menu-card": "/components/menu-card/index",
+    "cart-icon": "/components/cart-icon/index"
+  }
+}

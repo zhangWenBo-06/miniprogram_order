@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "菜品详情",
+  "usingComponents": {
+    "cart-icon": "/components/cart-icon/index"
+  }
+}

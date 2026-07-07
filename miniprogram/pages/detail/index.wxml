@@ -1,0 +1,58 @@
+<view class="page-detail" wx:if="{{menu}}">
+  <view class="hero-image">
+    <image wx:if="{{menu.image}}" src="{{menu.image}}" mode="aspectFill" />
+    <view wx:else class="hero-placeholder">
+      <text>{{menu.name[0]}}</text>
+    </view>
+  </view>
+
+  <view class="info-section">
+    <view class="info-header">
+      <text class="menu-name">{{menu.name}}</text>
+      <text class="menu-category">
+        {{menu.category === 'drink' ? '🥤' : menu.category === 'snack' ? '🍿' : '🍱'}}
+      </text>
+    </view>
+    <text class="menu-price" wx:if="{{menu.price}}">¥{{menu.price}}</text>
+    <text class="menu-price free" wx:else>免费投喂 ❤️</text>
+  </view>
+
+  <view class="specs-section" wx:if="{{menu.specs && menu.specs.length > 0}}">
+    <view class="spec-group" wx:for="{{menu.specs}}" wx:key="name">
+      <text class="spec-label">{{item.name}}</text>
+      <view class="spec-options">
+        <view
+          wx:for="{{item.options}}"
+          wx:for-item="opt"
+          wx:key="*this"
+          class="spec-option {{selectedSpecs[item.name] === opt ? 'active' : ''}}"
+          data-name="{{item.name}}"
+          data-value="{{opt}}"
+          bindtap="onSpecChange">{{opt}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="quantity-section">
+    <text class="section-label">数量</text>
+    <view class="quantity-control">
+      <view class="qty-btn" bindtap="onQuantityMinus">-</view>
+      <text class="qty-value">{{quantity}}</text>
+      <view class="qty-btn" bindtap="onQuantityPlus">+</view>
+    </view>
+  </view>
+
+  <view class="remark-section">
+    <text class="section-label">备注</text>
+    <textarea class="remark-input" placeholder="额外要求，比如多加珍珠..."
+              maxlength="100" value="{{remark}}" bindinput="onRemarkInput" />
+  </view>
+
+  <view class="bottom-bar">
+    <view class="btn-cart" bindtap="addToCart">
+      <text>加入购物车</text>
+    </view>
+  </view>
+
+  <cart-icon />
+</view>
