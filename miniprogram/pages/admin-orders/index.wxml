@@ -4,9 +4,7 @@
           wx:key="key" class="tab-item {{activeTab === item.key ? 'active' : ''}}"
           data-tab="{{item.key}}" bindtap="switchTab">
       {{item.label}}
-      <text class="tab-count" wx:if="{{orders.filter(o => o.status === item.key).length > 0}}">
-        {{orders.filter(o => o.status === item.key).length}}
-      </text>
+      <text class="tab-count" wx:if="{{tabCounts[item.key]}}">{{tabCounts[item.key]}}</text>
     </view>
   </view>
 

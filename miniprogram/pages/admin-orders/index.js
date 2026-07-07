@@ -2,7 +2,7 @@ const app = getApp()
 const util = require('../../utils/util')
 
 Page({
-  data: { orders: [], loading: false, activeTab: 'pending' },
+  data: { orders: [], loading: false, activeTab: 'pending', tabCounts: {} },
 
   onShow() {
     if (!app.globalData.isAdmin) {
@@ -18,7 +18,9 @@ Page({
     wx.cloud.callFunction({ name: 'getOrders', data: {} })
       .then(res => {
         const orders = (res.result.orders || []).map(o => ({ ...o, formattedTime: util.formatTime(o.createdAt) }))
-        this.setData({ orders, loading: false })
+        const tabCounts = {}
+        orders.forEach(o => { tabCounts[o.status] = (tabCounts[o.status] || 0) + 1 })
+        this.setData({ orders, loading: false, tabCounts })
       })
       .catch(() => { this.setData({ loading: false }) })
   },
