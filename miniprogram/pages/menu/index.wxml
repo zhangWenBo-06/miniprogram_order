@@ -10,6 +10,19 @@
     </view>
   </scroll-view>
 
+  <scroll-view scroll-x class="subcategory-tabs" wx:if="{{subcategories.length > 0}}">
+    <view
+      class="sub-tab-item {{activeSubcategory === '' ? 'active' : ''}}"
+      data-subcategory=""
+      bindtap="switchSubcategory">全部</view>
+    <view
+      wx:for="{{subcategories}}"
+      wx:key="key"
+      class="sub-tab-item {{activeSubcategory === item.key ? 'active' : ''}}"
+      data-subcategory="{{item.key}}"
+      bindtap="switchSubcategory">{{item.label}}</view>
+  </scroll-view>
+
   <view class="menu-grid" wx:if="{{menus.length > 0}}">
     <view class="menu-item" wx:for="{{menus}}" wx:key="_id">
       <menu-card menu="{{item}}" bind:tap="onMenuTap" />

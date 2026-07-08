@@ -1,4 +1,5 @@
 const util = require('../../utils/util')
+const { CATEGORIES, getSubcategories } = require('../../utils/categories')
 
 Page({
   data: {
@@ -9,6 +10,8 @@ Page({
       { key: 'meal', label: '🍱 餐食' }
     ],
     activeCategory: '',
+    activeSubcategory: '',
+    subcategories: [],
     menus: [],
     loading: false
   },
@@ -20,15 +23,30 @@ Page({
 
   switchCategory(e) {
     const cat = e.currentTarget.dataset.category
-    this.setData({ activeCategory: cat, menus: [] })
-    this.loadMenus(cat)
+    const subcategories = cat ? getSubcategories(cat) : []
+    this.setData({
+      activeCategory: cat,
+      activeSubcategory: '',
+      subcategories,
+      menus: []
+    })
+    this.loadMenus(cat, '')
   },
 
-  loadMenus(category) {
+  switchSubcategory(e) {
+    const sub = e.currentTarget.dataset.subcategory
+    this.setData({ activeSubcategory: sub, menus: [] })
+    this.loadMenus(this.data.activeCategory, sub)
+  },
+
+  loadMenus(category, subcategory) {
     this.setData({ loading: true })
     wx.cloud.callFunction({
       name: 'getMenus',
-      data: { category: category || '' }
+      data: {
+        category: category || '',
+        subcategory: subcategory || ''
+      }
     }).then(res => {
       this.setData({
         menus: res.result.menus || [],
