@@ -2,7 +2,7 @@
   <view class="card-image">
     <image wx:if="{{menu.image}}" src="{{menu.image}}" mode="aspectFill" />
     <view wx:else class="image-placeholder"><text>{{menu.name[0]}}</text></view>
-    <view class="category-tag">{{menu.category === 'drink' ? '🥤' : menu.category === 'snack' ? '🍿' : '🍱'}}</view>
+    <view class="brand-tag" wx:if="{{brandLabel}}">{{brandLabel}}</view>
   </view>
   <view class="card-body">
     <text class="card-name">{{menu.name}}</text>
