@@ -1,5 +1,5 @@
 const util = require('../../utils/util')
-const { CATEGORIES, getSubcategories } = require('../../utils/categories')
+const { getSubcategories } = require('../../utils/categories')
 
 Page({
   data: {
