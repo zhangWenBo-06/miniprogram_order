@@ -10,7 +10,7 @@ exports.main = async (event) => {
     return { success: false, error: '无权限' }
   }
 
-  const { menuId, name, category, image, price, specs, available } = event
+  const { menuId, name, category, subcategory, image, price, specs, available } = event
   if (!menuId) {
     return { success: false, error: '缺少menuId' }
   }
@@ -19,6 +19,7 @@ exports.main = async (event) => {
   const updates = {}
   if (name !== undefined) updates.name = name
   if (category !== undefined) updates.category = category
+  if (subcategory !== undefined) updates.subcategory = subcategory
   if (image !== undefined) updates.image = image
   if (price !== undefined) updates.price = price
   if (specs !== undefined) updates.specs = specs

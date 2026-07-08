@@ -11,7 +11,7 @@ exports.main = async (event) => {
     return { success: false, error: '无权限' }
   }
 
-  const { name, category, image, price, specs } = event
+  const { name, category, subcategory, image, price, specs } = event
 
   if (!name || !category) {
     return { success: false, error: '名称和分类不能为空' }
@@ -21,6 +21,7 @@ exports.main = async (event) => {
     data: {
       name,
       category,
+      subcategory: subcategory || '',
       image: image || '',
       price: price || 0,
       specs: specs || [],
