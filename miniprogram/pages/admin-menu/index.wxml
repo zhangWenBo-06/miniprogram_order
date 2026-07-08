@@ -8,7 +8,7 @@
       </view>
       <view class="item-info">
         <text class="item-name">{{item.name}}</text>
-        <text class="item-cat">{{item.category === 'drink' ? '奶茶' : item.category === 'snack' ? '零食' : '餐食'}}</text>
+        <text class="item-cat">{{item.category === 'drink' ? '奶茶' : item.category === 'snack' ? '零食' : '餐食'}}<block wx:if="{{item.subcategory}}"> · {{item.subcategory === 'heytea' ? '喜茶' : item.subcategory === 'mxbc' ? '蜜雪冰城' : item.subcategory === 'guming' ? '古茗' : item.subcategory === 'chabaidao' ? '茶百道' : item.subcategory === 'bwchaji' ? '霸王茶姬' : item.subcategory === 'nayuki' ? '奈雪的茶' : item.subcategory === 'yidiandian' ? '一点点' : item.subcategory === 'coco' ? 'CoCo都可' : item.subcategory === 'hushang' ? '沪上阿姨' : item.subcategory === 'shuyi' ? '书亦烧仙草' : item.subcategory === 'kfc' ? '肯德基' : item.subcategory === 'mcdonalds' ? '麦当劳' : item.subcategory === 'wallace' ? '华莱士' : item.subcategory === 'haidilao' ? '海底捞' : item.subcategory === 'zhangliang' ? '张亮麻辣烫' : item.subcategory === 'yangguofu' ? '杨国福麻辣烫' : item.subcategory === 'zhengxin' ? '正新鸡排' : item.subcategory === 'shaxian' ? '沙县小吃' : item.subcategory === 'huangmenji' ? '黄焖鸡米饭' : item.subcategory === 'lanzhou' ? '兰州拉面' : item.subcategory === 'liangpin' ? '良品铺子' : item.subcategory === 'squirrel' ? '三只松鼠' : item.subcategory === 'baicaowei' ? '百草味' : item.subcategory === 'zhouheiya' ? '周黑鸭' : item.subcategory === 'juewei' ? '绝味鸭脖' : item.subcategory === 'laiyifen' ? '来伊份' : item.subcategory === 'haoliyou' ? '好丽友' : item.subcategory === 'lays' ? '乐事' : item.subcategory === 'other' ? '其他' : item.subcategory}}</block></text>
       </view>
       <view class="item-actions">
         <view class="action-btn" data-menu="{{item}}" bindtap="showEdit">编辑</view>
@@ -48,6 +48,17 @@
             <view class="cat-opt {{formData.category === 'drink' ? 'active' : ''}}" data-value="drink" bindtap="onCategorySelect">🥤 奶茶</view>
             <view class="cat-opt {{formData.category === 'snack' ? 'active' : ''}}" data-value="snack" bindtap="onCategorySelect">🍿 零食</view>
             <view class="cat-opt {{formData.category === 'meal' ? 'active' : ''}}" data-value="meal" bindtap="onCategorySelect">🍱 餐食</view>
+          </view>
+        </view>
+        <view class="form-group">
+          <text class="form-label">品牌</text>
+          <view class="subcat-options">
+            <view
+              wx:for="{{subcategories}}"
+              wx:key="key"
+              class="subcat-opt {{formData.subcategory === item.key ? 'active' : ''}}"
+              data-value="{{item.key}}"
+              bindtap="onSubcategorySelect">{{item.label}}</view>
           </view>
         </view>
         <view class="form-group">

@@ -1,10 +1,12 @@
 const app = getApp()
+const { getSubcategories, getSubcategoryLabel } = require('../../utils/categories')
 
 Page({
   data: {
     menus: [], loading: false, seeding: false,
     showEditor: false, editorMode: 'add', editingMenu: null,
-    formData: { name: '', category: 'drink', price: '', specsText: '', image: '' }
+    formData: { name: '', category: 'drink', subcategory: '', price: '', specsText: '', image: '' },
+    subcategories: []
   },
 
   onShow() {
@@ -50,18 +52,22 @@ Page({
   },
 
   showAdd() {
+    const subs = getSubcategories('drink')
     this.setData({
       showEditor: true, editorMode: 'add',
-      formData: { name: '', category: 'drink', price: '', specsText: '', image: '' }
+      formData: { name: '', category: 'drink', subcategory: '', price: '', specsText: '', image: '' },
+      subcategories: subs
     })
   },
 
   showEdit(e) {
     const menu = e.currentTarget.dataset.menu
     const specsText = (menu.specs || []).map(s => `${s.name}:${s.options.join(',')}`).join('|')
+    const subs = getSubcategories(menu.category)
     this.setData({
       showEditor: true, editorMode: 'edit', editingMenu: menu,
-      formData: { name: menu.name, category: menu.category, price: String(menu.price || ''), specsText, image: menu.image || '' }
+      formData: { name: menu.name, category: menu.category, subcategory: menu.subcategory || '', price: String(menu.price || ''), specsText, image: menu.image || '' },
+      subcategories: subs
     })
   },
 
@@ -74,7 +80,14 @@ Page({
   },
 
   onCategorySelect(e) {
-    const formData = { ...this.data.formData, category: e.currentTarget.dataset.value }
+    const cat = e.currentTarget.dataset.value
+    const subs = getSubcategories(cat)
+    const formData = { ...this.data.formData, category: cat, subcategory: '' }
+    this.setData({ formData, subcategories: subs })
+  },
+
+  onSubcategorySelect(e) {
+    const formData = { ...this.data.formData, subcategory: e.currentTarget.dataset.value }
     this.setData({ formData })
   },
 
@@ -107,7 +120,7 @@ Page({
           return { name: name.trim(), options: opts.split(',').map(o => o.trim()).filter(Boolean) }
         })
       : []
-    const menuData = { name: formData.name.trim(), category: formData.category, price: parseFloat(formData.price) || 0, specs }
+    const menuData = { name: formData.name.trim(), category: formData.category, subcategory: formData.subcategory, price: parseFloat(formData.price) || 0, specs }
     if (formData.image) menuData.image = formData.image
 
     const fnName = editorMode === 'add' ? 'addMenu' : 'updateMenu'
