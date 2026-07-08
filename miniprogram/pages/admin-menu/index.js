@@ -21,7 +21,13 @@ Page({
   loadMenus() {
     this.setData({ loading: true })
     wx.cloud.callFunction({ name: 'getMenus', data: { category: '' } })
-      .then(res => { this.setData({ menus: res.result.menus || [], loading: false }) })
+      .then(res => {
+        const menus = (res.result.menus || []).map(m => ({
+          ...m,
+          subcategoryLabel: getSubcategoryLabel(m.category, m.subcategory)
+        }))
+        this.setData({ menus, loading: false })
+      })
       .catch(() => { this.setData({ loading: false }) })
   },
 
